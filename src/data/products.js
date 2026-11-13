@@ -1,9 +1,17 @@
 // Master product inventory. This array is treated as immutable (frozen) so any
 // accidental mutation by the filter/sort pipeline would throw in strict mode.
 
-// Keyword-matched real photos (stable per product via the lock param).
-// If a URL fails to load, <ProductImage> swaps in a generated fallback.
-const img = (id, keywords) => `https://loremflickr.com/480/360/${keywords}?lock=${id}`;
+// Real product photos from Pexels (free to use). Keyed by product id.
+// If a photo fails to load, <ProductImage> swaps in a generated fallback.
+const PEXELS = {
+  1: 3394650, 2: 5202925, 3: 31683433, 4: 11486464, 5: 267394, 6: 841228,
+  7: 11671964, 8: 4109760, 9: 1482476, 10: 4352249, 11: 27255129, 12: 7432216,
+  13: 1456705, 14: 2857040, 15: 2530912, 16: 10433248, 17: 18186215,
+  18: 915917, 19: 1705391, 20: 16359299, 21: 190819, 22: 1903760,
+  23: 3737800, 24: 35285814, 25: 28726706, 26: 290524,
+};
+const img = (id) =>
+  `https://images.pexels.com/photos/${PEXELS[id]}/pexels-photo-${PEXELS[id]}.jpeg?auto=compress&cs=tinysrgb&w=640&h=480&fit=crop`;
 
 const products = [
   // ---------- Electronics ----------
